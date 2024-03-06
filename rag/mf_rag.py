@@ -16,7 +16,7 @@ from langchain_openai import OpenAI
 from langchain.output_parsers import RegexParser
 from dotenv import load_dotenv
 
-import streamlit as st 
+# import streamlit as st 
 import pandas as pd
 import numpy as np
 import pprint
@@ -30,12 +30,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Load docs describing March Fitness
-print(os.path.realpath(__file__))
-
-pwd = os.getcwd()
-print("Present Working Directory:", pwd)
-
-loader = DirectoryLoader(f'./mf_rules', glob="./*.docx", loader_cls=Docx2txtLoader)
+loader = DirectoryLoader(f'mf_rules', glob="./*.docx", loader_cls=Docx2txtLoader)
 documents = loader.load()
 chunk_size_value = 1000
 chunk_overlap=100
