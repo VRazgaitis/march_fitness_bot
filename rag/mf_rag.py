@@ -30,6 +30,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Load docs describing March Fitness
+raise Exception(f"cwd={os.getcwd}")
 loader = DirectoryLoader(f'./march_fitness_bot/rag/mf_rules', glob="./*.docx", loader_cls=Docx2txtLoader)
 documents = loader.load()
 chunk_size_value = 1000
