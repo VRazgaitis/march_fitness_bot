@@ -31,7 +31,6 @@ load_dotenv()
 app = Flask(__name__)
 
 # Load docs describing March Fitness
-# raise Exception(f"cwd={os.getcwd()}")
 loader = DirectoryLoader(f'./rag/mf_rules', glob="./*.docx", loader_cls=Docx2txtLoader)
 documents = loader.load()
 chunk_size_value = 1000
@@ -41,12 +40,6 @@ texts = text_splitter.split_documents(documents)
 docembeddings = FAISS.from_documents(texts, OpenAIEmbeddings())
 docembeddings.save_local("llm_faiss_index")
 docembeddings = FAISS.load_local("llm_faiss_index",OpenAIEmbeddings())
-
-# import JSON with scoring values
-# file_path='./activity_types.json'
-# data = json.loads(Path(file_path).read_text())
-# loader = JSONLoader(file_path='./activity_types.json', jq_schema=".", json_lines=False, text_content=False)
-# documents = loader.load()
 
 prompt_template = """Use the following pieces of context, that explain the rules to a fitness competition, to answer questions pertaining to rules and scoring. If you don't know the answer, just say that you don't know, don't try to make up an answer.
 
