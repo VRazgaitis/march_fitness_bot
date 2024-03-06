@@ -41,30 +41,42 @@ docembeddings = FAISS.from_documents(texts, OpenAIEmbeddings())
 docembeddings.save_local("llm_faiss_index")
 docembeddings = FAISS.load_local("llm_faiss_index",OpenAIEmbeddings())
 
-prompt_template = """Use the following pieces of context, that explain the rules to a fitness competition, to answer questions pertaining to rules and scoring. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+# prompt_template = """Use the following pieces of context, that explain the rules to a fitness competition, to answer questions pertaining to rules and scoring. If you don't know the answer, just say that you don't know, don't try to make up an answer.
 
-This should be in the following format:
+# This should be in the following format:
 
-Question: [question here]
-Helpful Answer: [answer here]
-Score: [score between 0 and 100]
+# Question: [question here]
+# Helpful Answer: [answer here]
+# Score: [score between 0 and 100]
 
-Begin!
+# Begin!
 
-Context:
----------
-{context}
----------
-Question: {question}
-Helpful Answer:"""
+# Context:
+# ---------
+# {context}
+# ---------
+# Question: {question}
+# Helpful Answer:"""
+# output_parser = RegexParser(
+#     regex=r"(.*?)\nScore: (.*)",
+#     output_keys=["answer", "score"],
+# )
+# PROMPT = PromptTemplate(
+#     template=prompt_template,
+#     input_variables=["context", "question"],
+#     output_parser=output_parser
+# )
+
+prompt_template = """You are an assistant helping to explain rules for a march fitness competition.
+Use the following documents to answer questions about march fitness. Begin each response with the phrase, 'ah I know the answer'
+"""
 output_parser = RegexParser(
     regex=r"(.*?)\nScore: (.*)",
     output_keys=["answer", "score"],
 )
 PROMPT = PromptTemplate(
     template=prompt_template,
-    input_variables=["context", "question"],
-    output_parser=output_parser
+    input_variables=["context", "question"]
 )
 
 chain = load_qa_chain(OpenAI(temperature=0), chain_type="map_rerank", return_intermediate_steps=True, prompt=PROMPT)
