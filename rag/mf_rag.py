@@ -25,6 +25,7 @@ import json
 from pathlib import Path
 from pprint import pprint
 
+os.environ['PATH'] = '/path/to/dir/'
 load_dotenv()
 
 app = Flask(__name__)
