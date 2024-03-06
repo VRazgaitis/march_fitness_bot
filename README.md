@@ -1,3 +1,6 @@
+WALKTHRU VIDEO
+https://www.loom.com/share/a4a8954845d9452b98ca63a94eae59ee?sid=600e9fc6-d48c-4018-bab7-33ca128c1ff1
+
 PROJECT MOTIVATION
 Each March, I participate in an annual fitness competition among friends. Participants
 in the competition are rewarded points for loggin daily workouts, and compete to win more 
