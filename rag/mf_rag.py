@@ -67,19 +67,6 @@ PROMPT = PromptTemplate(
     output_parser=output_parser
 )
 
-# prompt_template = """You are an assistant helping to explain rules for a march fitness competition.
-# Use the following documents to answer questions about march fitness. Begin each response with the phrase, 'ah I know the answer'
-# """
-# output_parser = RegexParser(
-#     regex=r"(.*?)\nScore: (.*)",
-#     output_keys=["answer", "score"],
-# )
-# PROMPT = PromptTemplate(
-#     template=prompt_template,
-#     input_variables=["context", "question"],
-#     output_parser=output_parser
-# )
-
 chain = load_qa_chain(OpenAI(temperature=0), chain_type="map_rerank", return_intermediate_steps=True, prompt=PROMPT)
 
 @st.cache_data
