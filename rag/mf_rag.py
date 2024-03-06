@@ -95,4 +95,4 @@ def getanswer(query):
 if __name__ == "__main__":
     st.title("March fitness rules chatbot")
     question = st.text_input("Enter a question about rules or scoring in March fitness:")
-    st.write("🦾MF admin commitee🦾:", getanswer(question))
+    st.write("🦾MF admin commitee🦾:\n", getanswer(question))
