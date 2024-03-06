@@ -30,6 +30,11 @@ load_dotenv()
 app = Flask(__name__)
 
 # Load docs describing March Fitness
+print(os.path.realpath(__file__))
+
+pwd = os.getcwd()
+print("Present Working Directory:", pwd)
+
 loader = DirectoryLoader(f'./mf_rules', glob="./*.docx", loader_cls=Docx2txtLoader)
 documents = loader.load()
 chunk_size_value = 1000
