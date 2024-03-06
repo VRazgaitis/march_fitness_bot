@@ -88,7 +88,8 @@ def getanswer(query):
     #     text_reference+=results["input_documents"][i].page_content
     # output={"Answer":results["output_text"],"Reference":text_reference}
     output={"Answer":results["output_text"]}
-    return output
+    # return output
+    return results["output_text"]
 
 # Streamlit app
 if __name__ == "__main__":
