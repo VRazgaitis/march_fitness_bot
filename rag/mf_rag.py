@@ -83,10 +83,11 @@ def getanswer(query):
     for chunk in relevant_chunks:
         chunk_docs.append(chunk[0])
     results = chain({"input_documents": chunk_docs, "question": query})
-    text_reference=""
-    for i in range(len(results["input_documents"])):
-        text_reference+=results["input_documents"][i].page_content
-    output={"Answer":results["output_text"],"Reference":text_reference}
+    # text_reference=""
+    # for i in range(len(results["input_documents"])):
+    #     text_reference+=results["input_documents"][i].page_content
+    # output={"Answer":results["output_text"],"Reference":text_reference}
+    output={"Answer":results["output_text"]}
     return output
 
 # Streamlit app
